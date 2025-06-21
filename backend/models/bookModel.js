@@ -25,6 +25,10 @@ const bookSchema = new Schema({
     isPublic: {
         type: Boolean,
         required: true
+    },
+    user_id: {
+        type: String,
+        required:  true
     }
 }, { timestamps: true })
 

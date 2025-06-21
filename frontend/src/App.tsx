@@ -3,10 +3,12 @@ import { useAuthContext } from "./hooks/useAuthContext"
 import "./index.css"
 
 // Pages and Components
+import Landing from './pages/Landing'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 function App() {
 
@@ -20,18 +22,23 @@ function App() {
           <Routes>
             <Route 
               path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={!user ? <Landing /> : <Navigate to="/home" />}
+            />
+            <Route 
+              path="/home"
+              element={user ? <Home /> : <Navigate to="/" />}
             />
             <Route 
               path="/login"
-              element={!user ? <Login /> : <Navigate to="/" />}
+              element={!user ? <Login /> : <Navigate to="/home" />}
             />
             <Route 
               path="/signup"
-              element={!user ? <Signup /> : <Navigate to="/" />}
+              element={!user ? <Signup /> : <Navigate to="/home" />}
             />
           </Routes>
         </div>
+        <Footer />
       </BrowserRouter>
     </div>
   )

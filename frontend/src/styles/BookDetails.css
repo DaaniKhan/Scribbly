@@ -82,6 +82,34 @@
   min-height: 24px;
 }
 
+.book-notes-wrapper {
+  max-height: 160px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
+.book-notes {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: auto;
+  min-height: 24px;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.book-notes-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.book-notes-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(74, 20, 140, 0.3);
+  border-radius: 3px;
+}
+
+
 .timestamp {
   font-size: 0.85rem;
   color: #999;

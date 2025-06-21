@@ -63,7 +63,7 @@ const Home = () => {
             </section>
 
             <section className="book-list-section">
-                <h2>Your Library</h2>
+                <h2>Your Library ({books?.length})</h2>
                 <div className="book-grid">
                     {books?.map((book) => (
                         <BookDetails key={book._id} book={book} />

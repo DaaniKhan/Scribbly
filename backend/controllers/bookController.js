@@ -3,7 +3,8 @@ import mongoose from "mongoose"
 
 // get all books
 const getBooks = async (req, res) => {
-    const books = await Book.find({}).sort({createdAt: -1})
+    const user_id = req.user._id
+    const books = await Book.find({ user_id }).sort({createdAt: -1})
 
     res.status(200).json(books)
 }
@@ -30,8 +31,8 @@ const addBook = async (req, res) => {
     const {title, author, cover, rating, notes, isPublic} = req.body
 
     try {
-        // const user_id = req.user._id
-        const newBook = await Book.create({title: title, author: author, cover: cover, rating: rating, notes: notes, isPublic})
+        const user_id = req.user._id
+        const newBook = await Book.create({title: title, author: author, cover: cover, rating: rating, notes: notes, isPublic, user_id})
         
         res.status(200).json(newBook)
     } catch (error) {

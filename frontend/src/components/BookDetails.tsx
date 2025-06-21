@@ -107,17 +107,6 @@ const BookDetails = ({ book }: BookDetailsProps) => {
           <h4 className="book-title">{book.title}</h4>
           <p className="book-author">{book.author}</p>
 
-          {/* <div className="visibility-indicator">
-            <div className="tooltip-wrapper">
-              <span className="material-symbols-rounded visibility-icon">
-                {book.isPublic ? "public" : "lock"}
-              </span>
-              <span className="custom-tooltip">
-                {book.isPublic ? "Public" : "Private"}
-              </span>
-            </div>
-          </div> */}
-
           <div className="visibility-indicator">
             {!isEditing && (
               <div className="tooltip-wrapper">
@@ -129,7 +118,7 @@ const BookDetails = ({ book }: BookDetailsProps) => {
                 </span>
               </div>
             )}
-            
+
             {isEditing && (
               <div className="toggle-row">
                   <div className="tooltip-wrapper">
@@ -161,7 +150,9 @@ const BookDetails = ({ book }: BookDetailsProps) => {
             <p className="char-count">{editedNotes.length}/{notesCharLimit} characters</p>
             </>
           ) : (
-            <p className="book-notes">{book.notes ? `${book.notes}` : ""}</p>
+            <div className="book-notes-wrapper">
+              <p className="book-notes">{book.notes ? `${book.notes}` : ""}</p>
+            </div>
           )}
         </div>
         
