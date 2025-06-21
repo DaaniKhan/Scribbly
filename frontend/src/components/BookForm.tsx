@@ -18,6 +18,8 @@ const BookForm = () => {
   const [bookSelected, setBookSelected] = useState(false)
   const [loading, setLoading] = useState(false)
   const [notesCharLimit] = useState(500)
+  const [isPublic, setIsPublic] = useState(true)
+
 
   const { user } = useAuthContext()
 
@@ -43,6 +45,7 @@ const BookForm = () => {
       cover,
       rating,
       notes,
+      isPublic
     }
 
     try {
@@ -60,6 +63,7 @@ const BookForm = () => {
       setRating(0)
       setHoverRating(0)
       setBookSelected(false)
+      setIsPublic(true)
 
       dispatch({type: 'CREATE_BOOK', payload: response.data})
     } catch (error) {
@@ -82,9 +86,27 @@ const BookForm = () => {
           <div className="form-left">
             {bookSelected && (
               <>
+                <div className="toggle-row">
+                  <div className="tooltip-wrapper">
+                    <span className="material-symbols-rounded visibility-icon">
+                      {isPublic ? "public" : "lock"}
+                    </span>
+                    <span className="custom-tooltip">
+                      {isPublic ? "Public" : "Private"}
+                    </span>
+                  </div>
+                  <div
+                    className={`toggle-switch ${isPublic ? "on" : ""}`}
+                    onClick={() => setIsPublic(!isPublic)}
+                  >
+                    <div className="toggle-thumb" />
+                  </div>
+                </div>
+                
                 <div className="book-meta">
                   <h3 className="book-title">{title}</h3>
                   <p className="book-author">by {author}</p>
+                  
                 </div>
 
                 <textarea
@@ -130,6 +152,8 @@ const BookForm = () => {
           <div className="form-right">
             {bookSelected && (
               <>
+                
+                
                 {cover && (
                   <img
                     src={`https://covers.openlibrary.org/b/id/${cover}-L.jpg`}

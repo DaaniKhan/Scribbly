@@ -13,6 +13,7 @@ interface Book {
   rating: number
   notes?: string
   createdAt: string
+  isPublic: Boolean
 }
 
 interface BookDetailsProps {
@@ -24,6 +25,8 @@ const BookDetails = ({ book }: BookDetailsProps) => {
   const [isEditing, setIsEditing] = useState(false)
   const [editedNotes, setEditedNotes] = useState(book.notes || "")
   const [editedRating, setEditedRating] = useState(book.rating)
+  const [notesCharLimit] = useState(500)
+  const [editedIsPublic, setEditedIsPublic] = useState(book.isPublic);
 
   const { user } = useAuthContext()
 
@@ -48,7 +51,7 @@ const BookDetails = ({ book }: BookDetailsProps) => {
       return
     }
 
-    const updated = { ...book, notes: editedNotes, rating: editedRating }
+    const updated = { ...book, notes: editedNotes, rating: editedRating, isPublic: editedIsPublic }
 
     const response = await axios.patch('http://localhost:3000/api/books/' + book._id, updated, {
       headers: {
@@ -103,13 +106,60 @@ const BookDetails = ({ book }: BookDetailsProps) => {
         <div>
           <h4 className="book-title">{book.title}</h4>
           <p className="book-author">{book.author}</p>
-          
+
+          {/* <div className="visibility-indicator">
+            <div className="tooltip-wrapper">
+              <span className="material-symbols-rounded visibility-icon">
+                {book.isPublic ? "public" : "lock"}
+              </span>
+              <span className="custom-tooltip">
+                {book.isPublic ? "Public" : "Private"}
+              </span>
+            </div>
+          </div> */}
+
+          <div className="visibility-indicator">
+            {!isEditing && (
+              <div className="tooltip-wrapper">
+                <span className="material-symbols-rounded visibility-icon">
+                  {isEditing ? (editedIsPublic ? "public" : "lock") : (book.isPublic ? "public" : "lock")}
+                </span>
+                <span className="custom-tooltip">
+                  {isEditing ? (editedIsPublic ? "Public" : "Private") : (book.isPublic ? "Public" : "Private")}
+                </span>
+              </div>
+            )}
+            
+            {isEditing && (
+              <div className="toggle-row">
+                  <div className="tooltip-wrapper">
+                    <span className="material-symbols-rounded visibility-icon">
+                      {editedIsPublic ? "public" : "lock"}
+                    </span>
+                    <span className="custom-tooltip">
+                      {editedIsPublic ? "Public" : "Private"}
+                    </span>
+                  </div>
+                  <div
+                    className={`toggle-switch ${editedIsPublic ? "on" : ""}`}
+                    onClick={() => setEditedIsPublic(!editedIsPublic)}
+                  >
+                    <div className="toggle-thumb" />
+                  </div>
+              </div>
+            )}
+          </div>
+                    
           {isEditing ? (
+            <>
             <textarea
               value={editedNotes}
               onChange={(e) => setEditedNotes(e.target.value)}
               className="edit-notes-area"
+              maxLength={notesCharLimit}
             />
+            <p className="char-count">{editedNotes.length}/{notesCharLimit} characters</p>
+            </>
           ) : (
             <p className="book-notes">{book.notes ? `${book.notes}` : ""}</p>
           )}

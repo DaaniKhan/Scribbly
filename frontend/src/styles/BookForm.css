@@ -56,9 +56,9 @@
   transform: scale(1.03);
 }
 
-.book-meta {
+/* .book-meta {
   padding: 6px 0;
-}
+} */
 
 .book-title {
   font-family: 'Libre Baskerville', Georgia, serif;
@@ -258,4 +258,63 @@
   .clear-btn {
     width: 100%;
   }
+}
+
+.toggle-container {
+  width: 100%;
+}
+
+
+.toggle-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+  gap: 8px; 
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.toggle-switch {
+  width: 44px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-switch.on {
+  background-color: #4a148c;
+}
+
+.toggle-thumb {
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: left 0.3s ease;
+}
+
+.toggle-switch.on .toggle-thumb {
+  left: 23px;
+}
+
+.toggle-row {
+  margin-top: 10px;
+  font-family: 'Inter', system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
 }

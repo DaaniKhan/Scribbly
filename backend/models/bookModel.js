@@ -21,6 +21,10 @@ const bookSchema = new Schema({
     },
     notes: {
         type: String,
+    },
+    isPublic: {
+        type: Boolean,
+        required: true
     }
 }, { timestamps: true })
 
