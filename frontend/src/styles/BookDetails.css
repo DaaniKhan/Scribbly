@@ -1,0 +1,259 @@
+.book-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  min-height: 0%;
+  min-width: 0%;
+  box-sizing: border-box;
+}
+
+.book-details:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.book-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  max-width: 120px;
+}
+
+.book-cover {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3; 
+  object-fit: contain;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.rating-display {
+  display: flex;
+  gap: 2px;
+  margin-top: 10px;
+}
+
+.rating-display svg {
+  transition: transform 0.2s ease, fill 0.2s ease;
+  cursor: default;
+}
+
+.rating-display svg:hover {
+  transform: scale(1.15);
+}
+
+.book-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-title {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #4a148c;
+  margin: 0 0 4px;
+}
+
+.book-author {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.book-notes {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: auto;
+  min-height: 24px;
+}
+
+.timestamp {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 12px;
+}
+
+.delete-button {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 8px;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+
+.delete-button:hover {
+  background-color: #d9363e;
+  transform: scale(1.05);
+}
+
+.book-details.editing {
+  transform: scale(1.015);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  background-color: #fdf8ff;
+}
+
+.edit-notes-area {
+  font-family: 'Inter', system-ui, sans-serif;
+  width: 100%;
+  min-height: 70px;
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-top: 5px;
+  margin-bottom: 8px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-notes-area:focus {
+  border-color: #4a148c;
+  box-shadow: 0 0 0 3px rgba(74, 20, 140, 0.1);
+  outline: none;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.timestamp {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: #888;
+  text-align: right;
+}
+
+.save-btn, .cancel-btn {
+  padding: 6px 14px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 2px solid #bd1010;
+  color: #bd1010;
+  padding: 4px 12px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-btn {
+  background-color: #4a148c;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #6a1b9a;
+  transform: scale(1.05);
+}
+
+.cancel-btn:hover {
+  background-color: #ff4d4f;
+  color: black;
+  transform: scale(1.05);
+}
+
+.edit-button {
+  background-color: #0077cc;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 8px;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+
+.edit-button:hover {
+  background-color: #005fa3;
+  transform: scale(1.05);
+}
+
+.clickable-star {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable-star:hover {
+  transform: scale(1.1);
+}
+
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .book-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .book-left,
+  .book-right {
+    width: 100%;
+    align-items: center;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .timestamp {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .delete-button .edit-button .save-btn .cancel-btn {
+    text-align: center;
+  }
+}
