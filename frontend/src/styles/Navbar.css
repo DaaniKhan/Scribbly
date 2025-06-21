@@ -164,3 +164,12 @@ header {
     text-align: center;
   }
 }
+
+.user-email {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #4a148c;
+  background-color: #ede7f6;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+}

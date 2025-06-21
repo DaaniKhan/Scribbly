@@ -1,4 +1,4 @@
-import { createContext, useReducer, type ReactNode, type Dispatch } from 'react'
+import { createContext, useReducer, useEffect, type ReactNode, type Dispatch } from 'react'
 
 // Types
 interface AuthState {
@@ -35,6 +35,15 @@ interface AuthProviderProps {
 // Provider
 const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const [state, dispatch] = useReducer(authReducer, { user: null })
+
+  useEffect(() => {
+    const userString = localStorage.getItem('user');
+    const user = userString ? JSON.parse(userString) : null;
+
+    if (user) {
+      dispatch({ type: 'LOGIN', payload: user })
+    }
+  }, [])
 
   console.log('AuthContext State:', state)
 
