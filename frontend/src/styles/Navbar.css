@@ -98,6 +98,32 @@ header {
   color: #4a148c;
 }
 
+.logout-btn {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  box-sizing: border-box;
+  transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background-color: transparent;
+  color: #4a148c;
+  border: 2px solid #4a148c;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #6117bb;
+  color: #fff;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .container {

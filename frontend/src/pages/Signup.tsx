@@ -1,60 +1,19 @@
-// import React, { useState } from "react"
-// import "../styles/Signup.css"
-
-// const Signup = () => {
-//   const [email, setEmail] = useState('')
-//   const [password, setPassword] = useState('')
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault()
-//     console.log(email, password)
-//   }
-
-//   return (
-//     <div className="auth-container">
-//       <form className="auth-form" onSubmit={handleSubmit}>
-//         <h2 className="auth-heading">Create an Account</h2>
-
-//         <label>Email</label>
-//         <input 
-//           type="email"
-//           onChange={(e) => setEmail(e.target.value)}
-//           value={email}
-//           required
-//         />
-
-//         <label>Password</label>
-//         <input 
-//           type="password"
-//           onChange={(e) => setPassword(e.target.value)}
-//           value={password}
-//           required
-//         />
-
-//         <button type="submit" className="auth-btn">
-//           <span className="material-symbols-rounded">person_add</span>
-//           Sign Up
-//         </button>
-//       </form>
-//     </div>
-//   )
-// }
-
-// export default Signup
-
 import React, { useState } from "react"
+import { useSignup } from "../hooks/useSignup"
 import "../styles/Signup.css"
 
 const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const { signup, error, isLoading} = useSignup()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 1000)
-    console.log(email, password)
+    
+    await signup(email, password)
   }
 
   return (
@@ -78,10 +37,12 @@ const Signup = () => {
           required
         />
 
-        <button type="submit" className="signup-button">
+        <button disabled={isLoading} type="submit" className="signup-button">
           <span className="material-symbols-rounded">person_add</span>
           Sign Up
         </button>
+
+        {error && <div className="signup-error">{error}</div>}
 
         <div className="signup-separator">
             <span className="line" />

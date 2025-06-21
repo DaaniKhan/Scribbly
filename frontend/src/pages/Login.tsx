@@ -1,13 +1,16 @@
 import React, { useState } from "react"
+import { useLogin } from "../hooks/useLogin"
 import "../styles/Login.css"
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { login, error, isLoading } = useLogin()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(email, password)
+    
+    await login(email, password)
   }
 
   return (
@@ -31,10 +34,12 @@ const Login = () => {
           required
         />
 
-        <button type="submit" className="login-button">
+        <button disabled={isLoading} type="submit" className="login-button">
           <span className="material-symbols-rounded">login</span>
           Log In
         </button>
+
+        {error && <div className="signup-error">{error}</div>}
 
         <div className="login-separator">
           <span className="line" />
