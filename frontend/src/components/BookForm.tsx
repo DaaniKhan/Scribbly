@@ -3,6 +3,7 @@ import SearchBar from "./Searchbar"
 import axios from "axios"
 import '../styles/BookForm.css'
 import { useBooksContext } from "../hooks/useBooksContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 
 const BookForm = () => {
@@ -18,6 +19,8 @@ const BookForm = () => {
   const [loading, setLoading] = useState(false)
   const [notesCharLimit] = useState(500)
 
+  const { user } = useAuthContext()
+
   const handleBookSelect = (book: any) => {
     setTitle(book.title)
     setAuthor(book.author_name?.[0] || '')
@@ -27,6 +30,11 @@ const BookForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!user) {
+      return
+    }
+
     setLoading(true)
 
     const newBook = {
@@ -38,7 +46,11 @@ const BookForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/api/books', newBook)
+      const response = await axios.post('http://localhost:3000/api/books', newBook, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      })
 
       console.log(response.data)
       setTitle('')

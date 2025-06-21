@@ -3,9 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { BookContextExports } from "./context/BookContext";
-import { AuthContextExports } from './context/AuthContext';
+import { AuthContextProvider } from './context/AuthContext.tsx';
 
-const { AuthContextProvider } = AuthContextExports;
 const { BooksContextProvider } = BookContextExports;
 
 createRoot(document.getElementById('root')!).render(

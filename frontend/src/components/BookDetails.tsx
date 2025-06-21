@@ -3,6 +3,7 @@ import axios from "axios"
 import { useBooksContext } from "../hooks/useBooksContext"
 import { formatDistanceToNow } from "date-fns"
 import { useState } from "react"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 interface Book {
   _id: string
@@ -24,17 +25,37 @@ const BookDetails = ({ book }: BookDetailsProps) => {
   const [editedNotes, setEditedNotes] = useState(book.notes || "")
   const [editedRating, setEditedRating] = useState(book.rating)
 
+  const { user } = useAuthContext()
+
   const handleClick = async () => {
-    const response = await axios.delete('http://localhost:3000/api/books/' + book._id)
+    if (!user) {
+      return
+    }
+    
+    const response = await axios.delete('http://localhost:3000/api/books/' + book._id, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    })
+
     if (response.data) {
       dispatch({ type: 'DELETE_BOOK', payload: response.data })
     }
   }
 
   const handleSave = async () => {
+    if (!user) {
+      return
+    }
+
     const updated = { ...book, notes: editedNotes, rating: editedRating }
 
-    const response = await axios.patch('http://localhost:3000/api/books/' + book._id, updated)
+    const response = await axios.patch('http://localhost:3000/api/books/' + book._id, updated, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    })
+
     if (response.data) {
       dispatch({ type: 'UPDATE_BOOK', payload: response.data })
       setIsEditing(false)

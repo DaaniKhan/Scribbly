@@ -13,9 +13,6 @@ interface AuthContextType extends AuthState {
   dispatch: Dispatch<AuthAction>
 }
 
-// Context
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
-
 // Reducer
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
@@ -32,13 +29,15 @@ interface AuthProviderProps {
   children: ReactNode
 }
 
-// Provider
-const AuthContextProvider = ({ children }: AuthProviderProps) => {
+// Context
+export const AuthContext = createContext<AuthContextType | undefined>(undefined)
+
+export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const [state, dispatch] = useReducer(authReducer, { user: null })
 
   useEffect(() => {
-    const userString = localStorage.getItem('user');
-    const user = userString ? JSON.parse(userString) : null;
+    const userString = localStorage.getItem('user')
+    const user = userString ? JSON.parse(userString) : null
 
     if (user) {
       dispatch({ type: 'LOGIN', payload: user })
@@ -53,8 +52,3 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   )
 }
-
-export const AuthContextExports = {
-  AuthContext,
-  AuthContextProvider,
-};

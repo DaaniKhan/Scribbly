@@ -3,6 +3,7 @@ import axios from 'axios'
 import BookDetails from "../components/BookDetails"
 import BookForm from "../components/BookForm"
 import { useBooksContext } from "../hooks/useBooksContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 import '../styles/Home.css'
 
 interface Book {
@@ -19,15 +20,23 @@ const Home = () => {
     const {books, dispatch} = useBooksContext()
     const [showForm, setShowForm] = useState(false)
 
+    const { user } = useAuthContext()
+
     useEffect(() => {
         const fetchBooks = async () => {
-            const response = await axios.get< Book[] >('http://localhost:3000/api/books')
-            
+            const response = await axios.get< Book[] >('http://localhost:3000/api/books', {
+                headers: {
+                    Authorization: `Bearer ${user.token}`
+                }
+            })
+
             dispatch({type: 'SET_BOOKS', payload: response.data})
         }
-
-        fetchBooks()
-    }, [dispatch])
+        
+        if (user) {
+            fetchBooks()
+        }
+    }, [dispatch, user])
 
     return (
         <div className="home">
