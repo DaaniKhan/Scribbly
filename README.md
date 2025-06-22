@@ -1,109 +1,96 @@
 # 📚 Scribbly – Your Personal & Social Reading Companion
 
+Scribbly is a modern, responsive book management and review platform. Whether you're a casual reader or a book enthusiast, Scribbly lets you add, rate and review books, while connecting with others through public reviews.
+
+---
+
+## 🖼️ Screens
+
+### 📥 Landing Page
 ![Landing](./images/landing.png)
+
+### 🔐 Auth Pages
+![Login](./images/login.png)
+![Signup](./images/signup.png)
+
+### 🔍 Browse Books (via OpenLibrary)
+![Browse](./images/browse.png)
+
+### 🏠 Dashboard – Your Library
+![Home](./images/home.png)
+
+### 🌐 Community Reviews
+![Community](./images/community.png)
+
+---
 
 ## ✨ Features
 
-- 📥 Add and review books (with cover, rating and personal notes)
-- 🌍 Choose visibility: Private or Public
-- 📜 View public reviews from other users (Community page)
-- 🔍 Browse & search through OpenLibrary catalog
-- 🎯 Search through public reviews and personal library
-- 🎨 Fully responsive, design with animations
+- 📘 Add and manage your book library
+- ⭐ Rate books and leave personal notes
+- 🔒 Control visibility: mark reviews as Private or Public
+- 🌍 Explore public reviews from the community
+- 🔍 Browse books through OpenLibrary catalog
+- 🧠 Smart search across your library and public reviews
+- 📱 Fully responsive with smooth animations
 
 ---
 
-## 🛠️ Tech Stack
+## 🧱 Architecture Overview
 
-### 💻 Frontend
+### 🌐 Frontend
 
-- React + TypeScript
-- CSS Modules
-- Framer Motion (animations)
-- OpenLibrary API integration
+- **React + TypeScript**  
+- **CSS Modules**  
+- **Framer Motion** for animations  
+- **Axios** for HTTP requests  
+- **Responsive layout** with grid/flex systems
 
-### 🌐 Backend
+### ⚙️ Backend
 
-- Node.js + Express
-- MongoDB + Mongoose
-- JWT Auth + Middleware
-- Profanity filtering
-
----
-
-## 📱 Responsive Design
-
-Fully mobile-optimized layouts with:
-
-- 3-column grid on desktop
-- 1–2 columns on tablet/mobile
-- Scroll-based animations
+- **Node.js + Express**
+- **MongoDB + Mongoose**
+- **JWT Authentication**
+- **Middleware for route protection**
+- **Profanity filtering for clean reviews**
 
 ---
 
-## 🔒 Authentication & Authorization
+## 🔐 Auth & Security
 
-- Signup/Login uses JWT tokens
-- `requireAuth` middleware guards all routes
-- Tokens stored in `localStorage` and injected via Axios headers
-
----
-
-## 🚧 Error Handling
-
-- All API requests provide proper error feedback
-- Reused error state for both UI and form actions
-- Book duplication check based on title + user
-
----
-
-## 💬 Community Review Display
-
-Each public review includes:
-
-- User’s email
-- Book title, author and cover
-- Review notes
-- Rating displayed via stars
-- Time since review creation
+- JWT-based authentication
+- `requireAuth` middleware to protect API routes
+- Token stored in `localStorage`, attached via Axios headers
+- Duplicate review prevention (per user-title combination)
 
 ---
 
 ## 🌐 OpenLibrary API Integration
 
-Used to power:
-
-- Book search via `q` query
-- Image covers via `cover_i`
-- Browse page 
+- **Search Books**: via `q` query param
+- **Book Covers**: fetched using `cover_i`
+- **Browse Page**: displays curated results when searched
 
 ---
 
-## ✅ Screens
+## ⚠️ Error Handling
 
-### 🔐 Auth Pages  
-![Login](./images/login.png)  
-![Signup](./images/signup.png)
+- Unified error messages for UI feedback
+- Covers validation errors, API failures, and unauthorized access
+- Form-level error state management
 
-### 📚 Personal Dashboard  
-![Home](./images/home.png)
+---
 
-### 🔍 Browse Books  
-![Browse](./images/browse.png)
+## 📡 API Routes
 
-### 🌐 Community Reviews  
-![Community](./images/community.png)
-
-## 📡 API Overview
-
-### 🔐 Auth Routes
+### 🔐 Auth Endpoints
 
 | Endpoint              | Method | Description              |
 |-----------------------|--------|--------------------------|
 | `/api/user/signup`    | POST   | Register new user        |
 | `/api/user/login`     | POST   | Login and receive token  |
 
-### 📘 Book Routes (Protected)
+### 📘 Book Endpoints (Protected)
 
 | Endpoint                    | Method | Description                          |
 |-----------------------------|--------|--------------------------------------|
@@ -116,14 +103,16 @@ Used to power:
 
 ---
 
-## 🤝 Contributing
+## 🧑‍💻 Contributing
 
-Feel free to fork this repo, create issues, or submit PRs. Bug fixes, improvements, and features are always welcome.
+Contributions are welcome! Feel free to:
+
+- Fork the repository
+- Submit issues or bugs
+- Create pull requests with improvements or new features
 
 ---
 
 ## 📄 License
 
-## 📄 License
-
-This project is licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+Licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
