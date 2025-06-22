@@ -1,5 +1,7 @@
 # 📚 Scribbly – Your Personal & Social Reading Companion
 
+![Landing](./images/landing.png)
+
 ## ✨ Features
 
 - 📥 Add and review books (with cover, rating and personal notes)
@@ -79,21 +81,18 @@ Used to power:
 
 ## ✅ Screens
 
-### 📌 Landing Page  
-![Landing](./images/Landing.png)
-
 ### 🔐 Auth Pages  
-![Login](./images/Login.png)  
-![Signup](./images/Signup.png)
+![Login](./images/login.png)  
+![Signup](./images/signup.png)
 
 ### 📚 Personal Dashboard  
-![Home](./images/Home.png)
+![Home](./images/home.png)
 
 ### 🔍 Browse Books  
-![Browse](./images/Browse.png)
+![Browse](./images/browse.png)
 
 ### 🌐 Community Reviews  
-![Community](./images/Community.png)
+![Community](./images/community.png)
 
 ## 📡 API Overview
 
