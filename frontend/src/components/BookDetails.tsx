@@ -4,6 +4,7 @@ import { useBooksContext } from "../hooks/useBooksContext"
 import { formatDistanceToNow } from "date-fns"
 import { useState } from "react"
 import { useAuthContext } from "../hooks/useAuthContext"
+import { BASE_URL } from "./BaseURL"
 
 interface Book {
   _id: string
@@ -35,7 +36,7 @@ const BookDetails = ({ book }: BookDetailsProps) => {
       return
     }
     
-    const response = await axios.delete('http://localhost:3000/api/books/' + book._id, {
+    const response = await axios.delete(`${BASE_URL}/api/books/` + book._id, {
       headers: {
         Authorization: `Bearer ${user.token}`
       }
@@ -53,7 +54,7 @@ const BookDetails = ({ book }: BookDetailsProps) => {
 
     const updated = { ...book, notes: editedNotes, rating: editedRating, isPublic: editedIsPublic }
 
-    const response = await axios.patch('http://localhost:3000/api/books/' + book._id, updated, {
+    const response = await axios.patch(`${BASE_URL}/api/books/` + book._id, updated, {
       headers: {
         Authorization: `Bearer ${user.token}`
       }

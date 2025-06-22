@@ -4,6 +4,7 @@ import axios from "axios"
 import '../styles/BookForm.css'
 import { useBooksContext } from "../hooks/useBooksContext"
 import { useAuthContext } from "../hooks/useAuthContext"
+import { BASE_URL } from "./BaseURL"
 
 
 const BookForm = () => {
@@ -51,7 +52,7 @@ const BookForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/api/books', newBook, {
+      const response = await axios.post(`${BASE_URL}/api/books`, newBook, {
         headers: {
           Authorization: `Bearer ${user.token}`
         }

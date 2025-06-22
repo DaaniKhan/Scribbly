@@ -5,6 +5,7 @@ import BookForm from "../components/BookForm"
 import { useBooksContext } from "../hooks/useBooksContext"
 import { useAuthContext } from "../hooks/useAuthContext"
 import '../styles/Home.css'
+import { BASE_URL } from "../components/BaseURL"
 
 interface Book {
     _id: string
@@ -25,7 +26,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const response = await axios.get< Book[] >('http://localhost:3000/api/books', {
+            const response = await axios.get< Book[] >(`${BASE_URL}/api/books`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }

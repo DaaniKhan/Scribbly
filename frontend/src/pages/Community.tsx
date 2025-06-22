@@ -4,6 +4,7 @@ import "../styles/Community.css";
 import { motion } from "framer-motion";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { formatDistanceToNow } from "date-fns";
+import { BASE_URL } from "../components/BaseURL";
 
 interface Book {
   _id: string;
@@ -30,7 +31,7 @@ const Community = () => {
   useEffect(() => {
     const fetchPublicBooks = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/books/public", {
+        const res = await axios.get(`${BASE_URL}/api/books/public`, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         setBooks(res.data);

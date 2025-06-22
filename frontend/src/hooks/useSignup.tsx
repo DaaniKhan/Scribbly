@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
+import { BASE_URL } from "../components/BaseURL";
 
 export const useSignup = () => {
   const [error, setError] = useState<string | null>(null);
@@ -12,7 +13,7 @@ export const useSignup = () => {
       setIsLoading(true);
 
       const response = await axios.post(
-        "http://localhost:3000/api/user/signup",
+        `${BASE_URL}/api/user/signup`,
         { email, password }
       );
 
