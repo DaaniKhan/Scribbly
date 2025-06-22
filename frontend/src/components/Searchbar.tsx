@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import "../styles/SearchBar.css"
+import "../styles/Searchbar.css"
 
 interface Book {
   key: string
