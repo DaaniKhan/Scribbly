@@ -19,11 +19,13 @@ const BookForm = () => {
   const [loading, setLoading] = useState(false)
   const [notesCharLimit] = useState(500)
   const [isPublic, setIsPublic] = useState(true)
+  const [error, setError] = useState<String | null>(null)
 
 
   const { user } = useAuthContext()
 
   const handleBookSelect = (book: any) => {
+    setError(null)
     setTitle(book.title)
     setAuthor(book.author_name?.[0] || '')
     setCover(book.cover_i ? book.cover_i.toString() : '')
@@ -68,11 +70,16 @@ const BookForm = () => {
       dispatch({type: 'CREATE_BOOK', payload: response.data})
     } catch (error) {
       if (axios.isAxiosError(error)) {
+        const message = error.response?.data?.error || "Something went wrong while adding the book.";
+        
+        setError(message);
         console.error('Axios error:', error.response?.status, error.response?.data)
       } else {
+        setError("An unexpected error occured")
         console.error('Unexpected error:', error)
       }
     } finally {
+      setError(null)
       setLoading(false)
     }
   }
@@ -120,7 +127,7 @@ const BookForm = () => {
                 <p className="char-count">{notes.length}/{notesCharLimit} characters</p>
 
                 <div className="form-buttons">
-                  <button type="submit" disabled={loading}>
+                  <button className="add-button" type="submit" disabled={loading}>
                     {loading ? (
                       <span className="material-symbols-rounded spinner">progress_activity</span>
                     ) : (
@@ -143,6 +150,8 @@ const BookForm = () => {
                   >
                     Clear
                   </button>
+
+                  {error && <div className="signup-error">{error}</div>}
                 </div>
               </>
             )}
@@ -162,7 +171,7 @@ const BookForm = () => {
                   />
                 )}
 
-                <div className="rating-container">
+                <div className="rating-display">
                   {[1, 2, 3, 4, 5].map((star) => {
                     const isFilled = hoverRating >= star || (!hoverRating && rating >= star)
 

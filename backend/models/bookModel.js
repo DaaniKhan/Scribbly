@@ -27,8 +27,9 @@ const bookSchema = new Schema({
         required: true
     },
     user_id: {
-        type: String,
-        required:  true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 }, { timestamps: true })
 

@@ -28,9 +28,9 @@ const Navbar = () => {
         </div>
 
         <nav className={`nav-links ${menuOpen ? 'active' : ''}`}>
-          <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse Books</Link>
-          <Link to="/my-reviews" onClick={() => setMenuOpen(false)}>My Reviews</Link>
-          <Link to="/community" onClick={() => setMenuOpen(false)}>Community</Link>
+          {user && <Link to="/home" onClick={() => setMenuOpen(false)}>Home</Link>}
+          {user && <Link to="/community" onClick={() => setMenuOpen(false)}>Community</Link>}
+          <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse</Link>
         </nav>
 
         {user ?

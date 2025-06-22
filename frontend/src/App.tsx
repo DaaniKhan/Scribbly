@@ -4,7 +4,9 @@ import "./index.css"
 
 // Pages and Components
 import Landing from './pages/Landing'
+import Browse from './pages/Browse'
 import Home from './pages/Home'
+import Community from "./pages/Community"
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Navbar from "./components/Navbar"
@@ -25,8 +27,16 @@ function App() {
               element={!user ? <Landing /> : <Navigate to="/home" />}
             />
             <Route 
+              path="/browse"
+              element={<Browse />}
+            />
+            <Route 
               path="/home"
               element={user ? <Home /> : <Navigate to="/" />}
+            />
+            <Route 
+              path="/community"
+              element={user ? <Community /> : <Navigate to="/" />}
             />
             <Route 
               path="/login"

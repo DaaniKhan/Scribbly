@@ -13,6 +13,7 @@ interface Book {
     cover: string
     rating: number
     notes?: string
+    isPublic: Boolean
     createdAt: string
 }
 

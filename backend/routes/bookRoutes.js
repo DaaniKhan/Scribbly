@@ -4,7 +4,8 @@ import {
     getBook,
     addBook,
     deleteBook,
-    updateBook
+    updateBook,
+    getPublicBooks
 } from "../controllers/bookController.js"
 
 import requireAuth from "../middleware/requireAuth.js"
@@ -15,6 +16,9 @@ router.use(requireAuth)
 
 // GET all books
 router.get('/', getBooks)
+
+// GET all public books
+router.get('/public', getPublicBooks)
 
 // GET single book
 router.get("/:id", getBook)
