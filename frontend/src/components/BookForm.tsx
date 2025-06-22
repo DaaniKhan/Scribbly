@@ -57,7 +57,6 @@ const BookForm = () => {
         }
       })
 
-      console.log(response.data)
       setTitle('')
       setAuthor('')
       setCover('')
