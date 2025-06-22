@@ -25,14 +25,13 @@ const Browse = () => {
         try {
             const query = searchTerm || randomQuery(); 
             const res = await axios.get("https://openlibrary.org/search.json", {
-            params: { q: query, page, limit: 21 },
+              params: { q: query, limit: 21 },
+              headers: {
+                "User-Agent": "Scribbly (daanishuddin@gmail.com)"
+              }
             });
 
-            if (page === 1) {
-            setBooks(res.data.docs);
-            } else {
-            setBooks(prev => [...prev, ...res.data.docs]);
-            }
+            setBooks(res.data.docs)
         } catch (err) {
             console.error(err);
         }

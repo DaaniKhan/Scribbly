@@ -30,7 +30,7 @@ Scribbly is a modern, responsive book management and review platform. Whether yo
 - ⭐ Rate books and leave personal notes
 - 🔒 Control visibility: mark reviews as Private or Public
 - 🌍 Explore public reviews from the community
-- 🔍 Browse books through OpenLibrary catalog
+- 🔍 Browse books through [OpenLibrary](https://openlibrary.org/developers/api) catalog
 - 🧠 Smart search across your library and public reviews
 - 📱 Fully responsive with smooth animations
 

@@ -35,8 +35,11 @@ const SearchBar = ({ onBookSelect }: SearchBarProps) => {
     try {
       const response = await axios.get("https://openlibrary.org/search.json", {
         params: { q: searchTerm },
+        headers: {
+          "User-Agent": "Scribbly (daanishuddin@gmail.com)"
+        }
       })
-      setResults(response.data.docs.slice(0, 10)) // show top 10
+      setResults(response.data.docs.slice(0, 10))
     } catch (error) {
       console.error("Search failed", error)
     } finally {
